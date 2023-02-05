@@ -14,8 +14,7 @@ if settings is None:
     c.execute("INSERT INTO settings VALUES ('Compressify', 'Create your own \"link in bio\" solution', '', '', 'password', 0)")
     db.commit()
 
-
-links = [] # change on release
+links = ["cunt", "twat"] # change on release
 
 
 @app.route('/')

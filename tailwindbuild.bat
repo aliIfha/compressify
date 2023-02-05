@@ -1,0 +1,1 @@
+tailwind -i src/static/css/tailwind.css -o src/static/css/index.css -w
