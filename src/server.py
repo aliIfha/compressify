@@ -8,11 +8,18 @@ c = db.cursor()
 c.execute("CREATE TABLE IF NOT EXISTS links (url TEXT, name TEXT, colour TEXT, icon TEXT)")
 c.execute("CREATE TABLE IF NOT EXISTS settings (title TEXT, desc TEXT, background BLOB, favicon BLOB, password TEXT, exist BOOLEAN)")
 
-links = ["twat", "twat2"] # change on release
+c.execute("SELECT * FROM settings")
+settings = c.fetchone()
+if settings is None:
+    c.execute("INSERT INTO settings VALUES ('Compressify', 'Create your own \"link in bio\" solution', '', '', 'password', 0)")
+    db.commit()
+
+
+links = [] # change on release
 
 
 @app.route('/')
 def index():
-    return render_template('index.html', links=links)
+    return render_template('index.html', links=links, title=settings[0], desc=settings[1])
 
 app.run(debug=True, use_reloader=True, host="0.0.0.0")
